@@ -1,5 +1,5 @@
 <html>
-<canvas width='100' height='100' id='cv' style='width:400;height:400;display:block;'></canvas>
+<canvas width='400' height='400' id='cv'></canvas>
 <button type='button' id='next'>Next</button>
 <input type='number' id='ms' value='50' min='1'></input> ms
 <script src='life.js'></script>
@@ -11,12 +11,11 @@ function rand(x) {
 	return Math.random() * (x + 1) | 0;
 }
 
-var l = life('cv');
-/*for (var i = 0; i < 1000; i++) {
+var l = life('cv', 5);
+for (var i = 0; i < 1000; i++) {
 	l.setAlive(rand(255), rand(255), true);
-}*/
+}
 
-l.setPattern(50, 50, l.GROWTH);
 l.draw();
 
 var next = document.getElementById('next');

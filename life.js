@@ -1,14 +1,18 @@
-var life = function (canvasId) {
+var life = function (canvasId, scale) {
+	if (!scale) scale = 1;
 	var el = document.getElementById(canvasId);
 	var ctx = el.getContext('2d');
 	var img = ctx.createImageData(el.width, el.height);
+	var width = el.width / scale | 0;
+	var height = el.height / scale | 0;
 	
-	var getIndex = function(x, y) {
-		return (y * img.width + x) * 4;
+	console.log(width, height);
+	
+	var getPixelIndex = function(pixelX, pixelY) {
+		return (pixelY * img.width + pixelX) * 4;
 	};
 	
 	var setAlive = function (i, x, y, alive) {
-		var index = getIndex(x, y);
 		var on;
 		if (typeof(alive) === 'function') {
 			on = alive(x, y);
@@ -18,10 +22,26 @@ var life = function (canvasId) {
 		}
 		var val = on ? 0 : 255;
 		
-		i.data[index] = val;
-		i.data[index + 1] = val;
-		i.data[index + 2] = val;
-		i.data[index + 3] = 255;
+		for (xoff = 0; xoff < scale; xoff++) {
+			for (yoff = 0; yoff < scale; yoff++) {
+				var index = getPixelIndex(x * scale + xoff, y * scale + yoff);
+				
+				i.data[index] = val;
+				i.data[index + 1] = val;
+				i.data[index + 2] = val;
+				i.data[index + 3] = 255;
+			}
+		}
+	};
+	
+	var isAlive = function (x, y) {
+		if (x < 0 || y < 0 || x >= width || y >= height) {
+			return false;
+		}
+		
+		var index = getPixelIndex(x * scale, y * scale);
+		
+		return img.data[index] === 0 && img.data[index + 3] === 255;
 	};
 	
 	var setPattern = function(x, y, pattern) {
@@ -30,16 +50,6 @@ var life = function (canvasId) {
 				setAlive(img, x + xoff, y + yoff, pattern[xoff][yoff]);
 			}
 		}
-	};
-	
-	var isAlive = function (x, y) {
-		if (x < 0 || y < 0 || x >= img.width || y >= img.height) {
-			return false;
-		}
-		
-		var index = getIndex(x, y);
-		
-		return img.data[index] === 0 && img.data[index + 3] === 255;
 	};
 	
 	var willBeAlive = function(x, y) {
@@ -73,8 +83,8 @@ var life = function (canvasId) {
 	
 	var nextGen = function () {
 		var next = ctx.createImageData(el.width, el.height);
-		for (var x = 0; x < img.width; x++) {
-			for (var y = 0; y < img.height; y++) {
+		for (var x = 0; x < width; x++) {
+			for (var y = 0; y < height; y++) {
 				setAlive(next, x, y, willBeAlive);
 			}
 		}
@@ -85,8 +95,8 @@ var life = function (canvasId) {
 		setAlive: function(x, y, alive) { setAlive (img, x, y, alive); },
 		isAlive: isAlive,
 		draw: function () { ctx.putImageData(img, 0, 0); },
-		width: el.width,
-		height: el.height,
+		width: width,
+		height: height,
 		nextGen: nextGen,
 		setPattern: setPattern,
 		GLIDER: [[0, 1, 0], [0, 0, 1], [1, 1, 1]],
