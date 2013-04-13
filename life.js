@@ -13,6 +13,10 @@ var life = function (canvasId, scale) {
 	};
 	
 	var setAlive = function (i, x, y, alive) {
+		if (x >= width || y >= height) {
+			throw new Error();
+		}
+		
 		var on;
 		if (typeof(alive) === 'function') {
 			on = alive(x, y);
@@ -33,7 +37,7 @@ var life = function (canvasId, scale) {
 			}
 		}
 	};
-	
+
 	var isAlive = function (x, y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) {
 			return false;
@@ -81,8 +85,23 @@ var life = function (canvasId, scale) {
 		return sum;
 	};
 	
+	var setPrevGenBlock = function (prev, x, y) {
+	};
+	
+	var aPrevGen = function () {
+		var prev = ctx.createImageData(img);
+		
+		for (var x = 0; x < width; x++) {
+			for (var y = 0; y < height; y++) {
+				
+			}
+		}
+		
+		img = prev;
+	};
+	
 	var nextGen = function () {
-		var next = ctx.createImageData(el.width, el.height);
+		var next = ctx.createImageData(img);
 		for (var x = 0; x < width; x++) {
 			for (var y = 0; y < height; y++) {
 				setAlive(next, x, y, willBeAlive);
@@ -91,13 +110,18 @@ var life = function (canvasId, scale) {
 		img = next;
 	};
 	
+	var draw = function () {
+		ctx.putImageData(img, 0, 0);
+	};
+	
 	return {
 		setAlive: function(x, y, alive) { setAlive (img, x, y, alive); },
 		isAlive: isAlive,
-		draw: function () { ctx.putImageData(img, 0, 0); },
+		draw: draw,
 		width: width,
 		height: height,
 		nextGen: nextGen,
+		aPrevGen: aPrevGen,
 		setPattern: setPattern,
 		GLIDER: [[0, 1, 0], [0, 0, 1], [1, 1, 1]],
 		GROWTH: [[1, 1, 1, 0, 1], [1, 0, 0, 0, 0], [0, 0, 0, 1, 1], [0, 1, 1, 0, 1], [1, 0, 1, 0, 1]]

@@ -1,22 +1,29 @@
 <html>
 <canvas width='400' height='400' id='cv'></canvas>
 <button type='button' id='next'>Next</button>
+<button type='button' id='prev'>Prev</button>
 <input type='number' id='ms' value='50' min='1'></input> ms
 <script src='life.js'></script>
 
 <script>
 
-// random integer between 0 and x inclusive
+// random integer between 0 and x - 1
 function rand(x) {
-	return Math.random() * (x + 1) | 0;
+	return Math.random() * x | 0;
 }
 
 var l = life('cv', 5);
 for (var i = 0; i < 1000; i++) {
-	l.setAlive(rand(255), rand(255), true);
+	l.setAlive(rand(l.width), rand(l.height), true);
 }
 
 l.draw();
+
+var prev = document.getElementById('prev');
+prev.onclick = function() {
+	l.aPrevGen();
+	l.draw();
+};
 
 var next = document.getElementById('next');
 var go = function() {
