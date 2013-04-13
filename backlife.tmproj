@@ -3,63 +3,86 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>pixelator.js</string>
+	<string>life.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>backlife.html</string>
 			<key>lastUsed</key>
-			<date>2013-04-13T17:17:41Z</date>
+			<date>2013-04-13T20:56:20Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>pixelator.js</string>
+			<string>life.js</string>
 			<key>lastUsed</key>
-			<date>2013-04-13T17:18:39Z</date>
+			<date>2013-04-13T20:56:20Z</date>
+			<key>selected</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>README.md</string>
+			<key>lastUsed</key>
+			<date>2013-04-13T20:56:18Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
+		<key>README.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>74</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>backlife.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>37</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>4</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>pixelator.js</key>
+		<key>life.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>51</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>84</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>backlife.html</string>
-		<string>pixelator.js</string>
+		<string>life.js</string>
+		<string>README.md</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{465, 92}, {1146, 1018}}</string>
+	<string>{{730, 98}, {1146, 1018}}</string>
 </dict>
 </plist>

@@ -2,7 +2,7 @@
 <canvas width='400' height='400' id='cv'></canvas>
 <button type='button' id='next'>Next</button>
 <button type='button' id='prev'>Prev</button>
-<input type='number' id='ms' value='50' min='1'></input> ms
+<input type='number' id='ms' value='20' min='1'></input> ms
 <script src='life.js'></script>
 
 <script>
@@ -13,9 +13,11 @@ function rand(x) {
 }
 
 var l = life('cv', 5);
-for (var i = 0; i < 1000; i++) {
+/*for (var i = 0; i < 1000; i++) {
 	l.setAlive(rand(l.width), rand(l.height), true);
-}
+}*/
+
+l.setPattern(40, 40, l.NAPALM);
 
 l.draw();
 
