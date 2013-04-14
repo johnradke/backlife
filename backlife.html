@@ -1,11 +1,16 @@
 <html>
 <canvas width='400' height='400' id='cv'></canvas>
 <button type='button' id='next'>Next</button>
-<button type='button' id='prev'>Prev</button>
+<button type='button' id='hold'>Hold &amp; Go</button>
 <input type='number' id='ms' value='20' min='1'></input> ms
-<script src='life.js'></script>
 
+<script src='life.js'></script>
+<script src='atavism.js'></script>
 <script>
+
+var a = atavism();
+console.log(a.ALIVE.length)
+console.log(a.DEAD.length)
 
 // random integer between 0 and x - 1
 function rand(x) {
@@ -17,30 +22,27 @@ var l = life('cv', 5);
 	l.setAlive(rand(l.width), rand(l.height), true);
 }*/
 
-l.setPattern(40, 40, l.NAPALM);
+l.setPattern(40, 40, [[1, 1, 0], [0, 1, 1]] );
 
 l.draw();
 
-var prev = document.getElementById('prev');
-prev.onclick = function() {
-	l.aPrevGen();
-	l.draw();
-};
-
-var next = document.getElementById('next');
 var go = function() {
 	l.nextGen();
 	l.draw();
 };
 
+var next = document.getElementById('next');
+next.onclick = go;
+
+var hold = document.getElementById('hold');
 var interval;
 
-next.addEventListener('mousedown', function() {
+hold.addEventListener('mousedown', function() {
 	var ms = document.getElementById('ms').value;
 	interval = setInterval(go, ms);
 });
 
-next.addEventListener('mouseup', function() {
+hold.addEventListener('mouseup', function() {
 	clearInterval(interval);
 });
 

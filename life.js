@@ -6,8 +6,6 @@ var life = function (canvasId, scale) {
 	var width = el.width / scale | 0;
 	var height = el.height / scale | 0;
 	
-	console.log(width, height);
-	
 	var getPixelIndex = function(pixelX, pixelY) {
 		return (pixelY * img.width + pixelX) * 4;
 	};
@@ -57,14 +55,8 @@ var life = function (canvasId, scale) {
 	var willBeAlive = function(x, y) {
 		var count = neighborCount(x, y);
 		
-		if (count === 3) {
+		if (count === 3 || (isAlive(x, y) && count === 2)) {
 			return true;
-		}
-		
-		if (isAlive(x, y)) {
-			if (count === 2) {
-				return true;
-			}
 		}
 		
 		return false;
